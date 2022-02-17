@@ -36,7 +36,8 @@
 
 <h2 align="middle">Overview</h2>
 <!--<p>Give a high-level overview of what you implemented in this project. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the project.</p>-->
-
+<p>In this project, we implemented a rasterization pipeline. Given svg files, we would render the images and provide additional antialiasing and texture support. We essentially implemented the basic rendering principles in order to draw more complex shapes on the screen. We also integrated the ability to map textures onto the screen. I thought this project was a great introduction to implementing the graphics principles we’ve been studying in class. It’s one thing to walk through an algorithm on slides, but even better to pull your hair out over segfaults because you’re stepping outside of the sample buffer. What I found interesting about this project is how relatively simple rendering algorithms can be. As a computer user, graphics always seemed like a mystery. However, I’m looking at my computer screen completely differently knowing that it’s mainly just a bunch of relatively simple polynomial shapes.
+</p>
 <h2 align="middle">Section I: Rasterization</h2>
 
 <h3 align="middle">Part 1: Rasterizing single-color triangles</h3>
@@ -76,10 +77,9 @@
 <h3 align="middle">Part 2: Antialiasing triangles</h3>
 <p>For each pixel in the bounding box, we sampled the pixel n x n  times, where n is the square root of the sample rate. So, for the n regions in the pixel, we checked whether that spot was inside the bounding box, and if it was, we would add that subsection of the pixel into our sample buffer. Next, we average the color from the n samples for each pixel to find the final color for that pixel, which we add to our frame buffer. Supersampling is a useful way to reduce aliasing. It reduces the appearance of jags/pixelated edges. However, it requires us to use more memory because we must sample the image at more points. We modified the rasterization pipeline by taking more samples per pixel and allocating more memory to the sample_buffer to store all of our samples. Supersampling helped us antialias our triangles by allowing us to smooth edges by taking more samples and averaging out the colors between the samples. Because we averaged, we were able to decrease the frequency of the svg and antialias our triangles.
 </p>
-  <img src="images/task2a.png" align="center" width="400px"/>
+  <img src="images/Screen Shot 2022-02-16 at 10.49.39 PM.png" align="center" width="400px"/>
   <img src="images/task2b.png" align="center" width="400px"/>
   <img src="images/task2c.png" align="center" width="400px"/>
-  <img src="images/task2d.png" align="center" width="400px"/>
 
 
 
