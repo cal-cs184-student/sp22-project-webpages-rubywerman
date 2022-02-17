@@ -1,7 +1,133 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 1 here
-	</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+  body {
+    padding: 100px;
+    width: 1000px;
+    margin: auto;
+    text-align: left;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: #121212;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+</style>
+<title>CS 184 Rasterizer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+<h1 align="middle">Project 1: Rasterizer</h1>
+<h2 align="middle">Ruby and Jen, CS184-lost-in-translation <img src="images/dancingpizza.gif" align="center" width="100px"/>
+</h2>
+<!--<img src="images/dancingpizza.gif" align="center" width="100px"/>-->
+
+
+<br><br>
+
+<div>
+
+<h2 align="middle">Overview</h2>
+<!--<p>Give a high-level overview of what you implemented in this project. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the project.</p>-->
+
+<h2 align="middle">Section I: Rasterization</h2>
+
+<h3 align="middle">Part 1: Rasterizing single-color triangles</h3>
+  <p> We used 6 line tests and a nested for loop to implement rasterization. We created our own “inside” test to check if a pixel was inside a triangle. We added a method that took in 2 points that define the line, and then a third point to see which side it was on. This way, we could pass in points based on whichever winding order was being used. If all three points were > 0 based on the line equation, we returned that the point was inside the triangle. We also returned that the point was inside of the triangle if it was on a top or left edge of the triangle. We looped through all of the pixels inside the bounding box of the triangle [(min(x), min(y)), (max(x), max(y))]. We checked if the center of each pixel was inside of the triangle using the method I described above. If it was inside, we filled the pixel with the color. Our algorithm is no worse than checking the bounding box of the triangle because we literally only check the bounding box of the triangle described by the three points given.
+  </p>
+  <img src="images/task1.png" align="center" width="400px"/>
+
+<!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
+
+<!--<div align="middle">-->
+<!--  <table style="width=100%">-->
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <img src="images/image1.png" align="middle" width="400px"/>-->
+<!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <img src="images/image2.png" align="middle" width="400px"/>-->
+<!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <br>-->
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <img src="images/image3.png" align="middle" width="400px"/>-->
+<!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <img src="images/image4.png" align="middle" width="400px"/>-->
+<!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</div>-->
+
+
+<h3 align="middle">Part 2: Antialiasing triangles</h3>
+<p>For each pixel in the bounding box, we sampled the pixel n x n  times, where n is the square root of the sample rate. So, for the n regions in the pixel, we checked whether that spot was inside the bounding box, and if it was, we would add that subsection of the pixel into our sample buffer. Next, we average the color from the n samples for each pixel to find the final color for that pixel, which we add to our frame buffer. Supersampling is a useful way to reduce aliasing. It reduces the appearance of jags/pixelated edges. However, it requires us to use more memory because we must sample the image at more points. We modified the rasterization pipeline by taking more samples per pixel and allocating more memory to the sample_buffer to store all of our samples. Supersampling helped us antialias our triangles by allowing us to smooth edges by taking more samples and averaging out the colors between the samples. Because we averaged, we were able to decrease the frequency of the svg and antialias our triangles.
+</p>
+  <img src="images/task2a.png" align="center" width="400px"/>
+  <img src="images/task2b.png" align="center" width="400px"/>
+  <img src="images/task2c.png" align="center" width="400px"/>
+  <img src="images/task2d.png" align="center" width="400px"/>
+
+
+
+  <h3 align="middle">Part 3: Transforms</h3>
+<p>I decided to give Cubeman a few extra pounds (widen torso), rotate his head, and make him waving. I also decided to change his color to blue for a sleek new style. </p>
+  <img src="images/task3.png" align="center" width="400px"/>
+
+
+<h2 align="middle">Section II: Sampling</h2>
+
+<h3 align="middle">Part 4: Barycentric coordinates</h3>
+  <p>Barycentric coordinates are useful for rasterization because they relate closely to triangles. You can represent any point inside a triangle (including it’s edges or vertices) by using three scalars that indicate the point’s distance to each of its three vertices. Barycentric coordinates are normalized, meaning that the three scalars (let’s call them a, b, c) add up to 1: a + b + c = 1. Here is an example of a triangle with vertex A colored red, B colored blue, and C colored green. If we’re using barycentric coordinates to compute vertex A, we know that the color of A will be the color associated with the vertex. We can show this using the following formula:
+  </p>
+  <p> (&alpha;, &beta;, &gamma;) = (1, 0, 0)</p>
+  <p>(x, y) = &alpha;A + &beta;B + &gamma;C</p>
+  <p>= A</p>
+  <p>The same logic follows for points B and C. For points not on the vertices, we can interpolate the color data to get the value at that point. This idea is shown in the following image. The seamless blending of colors across the triangle indicates interpolation.
+  </p>
+  <img src="images/task4.png" align="center" width="400px"/>
+  <img src="images/task41.png" align="center" width="400px"/>
+
+
+
+  <h3 align="middle">Part 5: "Pixel sampling" for texture mapping</h3>
+<p>Pixel sampling is sampling either the nearest corresponding texel in a texture map to a pixel on the screen. This can also be done bilinearly by taking a weighted average of the 4 samples surrounding the corresponding texel. We implemented pixel sampling by writing a function for both bilinear sampling and nearest sampling. For nearest, we scaled the pixel to the size of the texture map, rounded the coordinates and got the color of the texel at that coordinate. For bilinear sampling, we scaled the pixel to the size of the texture map, linearly interpolated the horizontal components of the 4 nearest texels, and then linearly interpolated the vertical component of the 4 nearest texels to get a weighted average. We then filled the pixel with that color found from either the nearest method or the bilinear method.
+</p>
+  <img src="images/task5a.png" align="center" width="400px"/>
+  <img src="images/task5b.png" align="center" width="400px"/>
+  <img src="images/task5c.png" align="center" width="400px"/>
+  <img src="images/task5d.png" align="center" width="400px"/>
+<p> 	With the bilinear interpolation method, the coast of Greenland is a little blurred but I think represents the actual texture better. With the supersample rate set to 1, the bilinear pixel interpolation creates a better representation of the actual texture. The same occurs for the supersample rate of 16. There will be a large difference between the two methods when the supersample rate of the bilinear interpolation method is high and the nearest pixel sampling rate is low. With the high supersampling rate and bilinear pixel interpolation, the color of the pixel will be averaged out with surrounding supersamples, so there will be more data points and more averaging overall, providing more data to represent the image more accurately.
+</p>
+
+  <h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+<p>Level sampling is storing various mipmap levels and assessing in which situation they’ll be needed to represent the image with an appropriate resolution. A lower mipmap level will be closer to a 1:1 representation of the texture map whereas a higher level mipmap will have a lower resolution. We implemented it by checking the method of sampling - zero, nearest, or bilinear - and pixel sampling accordingly based on the level.
+</p>
+<p>We’ll get the best anitaliasing using a bilinear method of both level sampling and pixel sampling and a high supersampling rate. This will be more computationally expensive than any other combination of level and pixel sampling. If you need a low memory overhead, using a low supersampling rate will reduce your memory usage because you won’t need to expand the sample buffer. You can also do no level sampling to reduce the memory overhead because mipmaps take up more memory. If you need your program to be fast, implementing the simplest forms of rasterization and sampling will be necessary: 1 sample per pixel, level zero, and nearest pixel sampling.
+</p>
+  <img src="images/task6a.png" align="center" width="400px"/>
+  <img src="images/task6b.png" align="center" width="400px"/>
+  <img src="images/task6c.png" align="center" width="400px"/>
+  <img src="images/task6d.png" align="center" width="400px"/>
+
+
+<h3 align="middle">Part 7: Draw something interesting!</h3>
+  <p>Here's a cool bugart!</p>
+  <img src="images/bugart.png" align="center" width="400px"/>
+
+
+</body>
 </html>
