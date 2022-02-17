@@ -77,7 +77,7 @@
 <h3 align="middle">Part 2: Antialiasing triangles</h3>
 <p>For each pixel in the bounding box, we sampled the pixel n x n  times, where n is the square root of the sample rate. So, for the n regions in the pixel, we checked whether that spot was inside the bounding box, and if it was, we would add that subsection of the pixel into our sample buffer. Next, we average the color from the n samples for each pixel to find the final color for that pixel, which we add to our frame buffer. Supersampling is a useful way to reduce aliasing. It reduces the appearance of jags/pixelated edges. However, it requires us to use more memory because we must sample the image at more points. We modified the rasterization pipeline by taking more samples per pixel and allocating more memory to the sample_buffer to store all of our samples. Supersampling helped us antialias our triangles by allowing us to smooth edges by taking more samples and averaging out the colors between the samples. Because we averaged, we were able to decrease the frequency of the svg and antialias our triangles.
 </p>
-  <img src="images/Screen Shot 2022-02-16 at 10.49.39 PM.png" align="center" width="400px"/>
+  <img src="images/rubruby.png" align="center" width="400px"/>
   <img src="images/task2b.png" align="center" width="400px"/>
   <img src="images/task2c.png" align="center" width="400px"/>
 
