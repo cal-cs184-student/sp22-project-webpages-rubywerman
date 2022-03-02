@@ -1,7 +1,155 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 2 here
-	</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <style>
+        body {
+            padding: 100px;
+            width: 1000px;
+            margin: auto;
+            text-align: left;
+            font-weight: 300;
+            font-family: 'Open Sans', sans-serif;
+            color: #121212;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+    </style>
+    <title>CS184 Assignment 2 Spring 2022</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+
+<body>
+
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+<h1 align="middle">Project 2</h1>
+<h2 align="middle">Ruby and Jen, CS184-bezier-curvy-ladies <img src="images/dancingpizza.gif" align="center" width="100px"/>
+</h2>
+<!--<img src="images/dancingpizza.gif" align="center" width="100px"/>-->
+
+
+<br><br>
+
+<div>
+
+    <h2 align="middle">Overview</h2>
+    <h2 align="middle">Section I: Rasterization</h2>
+
+    <h3 align="middle">Part 1: Bezier Curves with 1D de Casteljau Subdivision</h3>
+    <p> 	De Casteljau’s algorithm is a method of creating a Bezier curve by taking weighted sums of n points to get a result of n - 1 points. When n = 1, the evaluation stops and a full Bezier curve can be drawn based on the points evaluated. We implemented the recursive call by creating a new vector of points, then looping through each pair of points to take their weighted sum.
+
+    </p>
+    <img src="images/task1_1.png" align="center" width="400px"/>
+    <img src="images/task1_2.png" align="center" width="400px"/>
+    <img src="images/task1_3.png" align="center" width="400px"/>
+    <img src="images/task1_4.png" align="center" width="400px"/>
+    <img src="images/task1_5.png" align="center" width="400px"/>
+    <img src="images/task1_6.png" align="center" width="400px"/>
+    <img src="images/task1_7.png" align="center" width="400px"/>
+    <img src="images/task1_8.png" align="center" width="400px"/>
+
+    <!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
+
+    <!--<div align="middle">-->
+    <!--  <table style="width=100%">-->
+    <!--    <tr>-->
+    <!--      <td>-->
+    <!--        <img src="images/image1.png" align="middle" width="400px"/>-->
+    <!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <img src="images/image2.png" align="middle" width="400px"/>-->
+    <!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--    <br>-->
+    <!--    <tr>-->
+    <!--      <td>-->
+    <!--        <img src="images/image3.png" align="middle" width="400px"/>-->
+    <!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <img src="images/image4.png" align="middle" width="400px"/>-->
+    <!--        <figcaption align="middle">Caption goes here.</figcaption>-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--  </table>-->
+    <!--</div>-->
+
+
+    <h3 align="middle">Part 2: Bezier Surfaces with Separable 1D de Casteljau</h3>
+    <p>The de Casteljau algorithm extends to surfaces because we can evaluate the Bezier curve along one axis and get that final point. Then we can evaluate the Bezier curve along all of the final points along the other axis. We implemented it by calling BezierPatch::evaluate1D on all of the rows in control points and added the final point to a vector of 3D points. Then we returned the value produced when we called BezierPatch::evaluate1D on the vector of final points.
+    </p>
+        <img src="images/task2.png" align="center" width="400px"/>
+
+
+
+    <h3 align="middle">Part 3: Area-Weighted Vertex Normals
+    </h3>
+    <p>We implemented the area-weighted vertex normals by iterating through the half-edges and summing up the area of each face. We calculated the surface area of each triangle by taking the cross product of two vectors that represented the distance between the vertex position of the current half edge and the other two half edges of the face, then divided by two. The last step in the algorithm was to normalize the sum of the area-weighted normals.
+    </p>
+    <img src="images/task3a.png" align="center" width="400px"/>
+    <img src="images/task3b.png" align="center" width="400px"/>
+
+
+    <h3 align="middle">Part 4: Edge Flip</h3>
+    <p>We started by drawing a diagram of two triangles and labeling the elements, including vertices, faces, edges, and halfedges. We then collected our elements from the drawing. We set each variable to the same variable name on our drawing. Then, we performed our flip by updating the pointers for all mesh elements affected by the flip. We went ahead and reassigned every element’s pointer to ease the debugging process. The process of drawing and labeling a diagram that matched our variable names verbatim helped the debugging process a lot.
+    </p>
+
+    <img src="images/task4a.png" align="center" width="400px"/>
+    <img src="images/task4b.png" align="center" width="400px"/>
+<p>We didn’t have a very eventful debugging journey due to the fact that we drew a diagram and followed it closely. We definitely chose to be thorough rather than go for efficiency or more concise code. :)
+</p>
+
+
+    <h3 align="middle">Part 5: Edge Split</h3>
+    <p>We implemented the edge split similar to the way we implemented the edge flip. We started by drawing a diagram then declaring and initializing variables that reflected the edges, faces, halfedges, and vertices in our diagram. We made sure to include the extra 3 edges, 2 faces, 6 halfedges, and 1 vertex in the variables declared. We then updated all of the pointers for each of the variables, and gave the new vertex a position. We highly recommend drawing the diagram because writing the code for this part was pretty straightforward after drawing a detailed diagram of an edge split.
+    </p>
+    <img src="images/task5a.png" align="center" width="400px"/>
+    <img src="images/task5b.png" align="center" width="400px"/>
+    <img src="images/task5c.png" align="center" width="400px"/>
+    <img src="images/task5d.png" align="center" width="400px"/>
+    <p> 	Again, since we carefully drew out a diagram, our debugging journey was pretty uneventful.
+    </p>
+
+    <h3 align="middle">Part 6: Loop Subdivision for Mesh Upsampling</h3>
+    <p>
+        We implemented loop subdivision by following the steps recommended in the spec. We iterated through the vertices in the original mesh and computed the new positions for each vertex by following the Loop subdivision rule. We saved the vertex’s new position in the newPosition attribute of the vertex. Next, we computed the new vertex positions for the vertices associated with edges. We followed the formula newPosition = 3/8 * (A + B) + 1/8 * (C + D). Next, we split every edge in the mesh. When we split an edge, we create a new vertex. We set that vertex’s new position equal to the edge:newPosition that we calculated in the previous step. Next, we flip any new edge that connects an old and new vertex. Finally, we copy the new vertex positions into the vertex positions.
+
+        We faced many bugs in part 6. One of the first bugs we ran into was our vertex positions getting set to zero. We realized we were returning the wrong vertex from splitedge(). We also entered an infinite loop when we tried to split edges. We decided to change our code from a for loop over edges to a while loop over the original number of edges. The final and most frustrating bug we faced was that our edges were flipping incorrectly in our upsample method. We verified our upsampling logic, as well as went through our diagrams and split/flip edge functions, but were unable to locate the awry pointers. We faced some CLion bugs as well. Although we were setting the new vertex position, CLion told us that this variable was never getting used. According to our final step of our algorithm, we should be using this variable because we are setting vertex position to vertex newPosition.
+
+    </p>
+    <img src="images/clionbug.png" align="center" width="400px"/>
+    <p>Here is the result of upsampling on cow.dae:</p>
+    <img src="images/cow1.png" align="center" width="400px"/>
+    <img src="images/cow2.png" align="center" width="400px"/>
+    <img src="images/cow3.png" align="center" width="400px"/>
+
+    <p>Here is the cow after subdivision:</p>
+    <img src="images/cow.png" align="center" width="400px"/>
+
+    <p>Our sharp-corners and edges appear to become rounded out as a result of loop subdivision. This effect is especially pronounced on the cube.dae because the edges are at 90 degree angles from each other. Yes, we can reduce this effect by pre-splitting edges near these sharp-corners. I’ll show this effect by preprocessing the cube. Clearly, we have some issues, but you can see generally that preprocessing a sharp corner will reduce the rounding effect.
+    </p>
+
+    <p>Here is our cube after iterations of loop subdivision.
+    </p>
+    <img src="images/cube1.png" align="center" width="400px"/>
+    <img src="images/cube2.png" align="center" width="400px"/>
+    <img src="images/cube3.png" align="center" width="400px"/>
+
+   <p> Here is our cube, preprocessing one of the corners.</p>
+    <img src="images/cubep0.png" align="center" width="400px"/>
+    <img src="images/cubep1.png" align="center" width="400px"/>
+    <img src="images/cubep3.png" align="center" width="400px"/>
+
+
+
+
+
+
+
+
+</body>
 </html>
