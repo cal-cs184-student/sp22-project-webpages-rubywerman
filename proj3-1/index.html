@@ -1,7 +1,96 @@
 <html>
-	<head>
-	</head>
-	<body>
-		Project 3-1 here
-	</body>
+<head>
+</head>
+<body>
+<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+<h1 align="middle">Project 3</h1>
+<h2 align="middle">Ruby and Jen, CS184-rayraycraycray <img src="images/dancingpizza.gif" align="center" width="100px"/>
+</h2>
+
+<h2 align="middle">Overview</h2>
+<p>Insert Overview here</p>
+
+<h2 align="middle">Part 1: Ray Generation and Scene Intersection</h2>
+<p>In our ray generation algorithm, we started by generating the ray in camera space. We did this by transforming the
+    coordinates we received into the camera space and then transforming it into a ray in world space. We also made sure
+    to update the min_t and max_t of this ray to nClip and fClip. For our raytrace_pixel function, we created a for loop
+    over num_samples and generated a random point sample in each iteration. We then created a ray off that sample data
+    and called est_radiance_global_illumination on that ray. We then took the average of these rays and updated the
+    value of the pixel in the sample buffer.
+</p>
+<p>We implemented the Moller-Trumbore algorithm for ray-triangle intersection. First, we calculated two edges of the
+    triangle. We then created a vector that was the result of the cross product of an edge and the direction of the ray.
+    Then we took the determinant by calculating the dot product of that vector and the other edge of the triangle. If
+    the determinant is 0, then we know the ray is parallel to the triangle plane and will not intersect. Next, we
+    computed u and rejected the triangle if u is less than 0 or greater than 1. U is calculated by taking the dot
+    product of the first vector and a new vector that represents the distance from the ray's origin to p1 on the
+    triangle and multiplying the product by the inverse determinant. Next, we created a new vector that was the cross
+    product of the previous vector and the other edge of the triangle. We computed v (the dot product of the ray's
+    direction and vector multiplied by the inverse determinant) and checked that v was greater than 0 and u + v was
+    greater than 1. Finally, we calculated t by taking the dot product of this third vector and the first triangle edge
+    and multiplying it by the inverse determinant. We checked that t was between the ray's min_t and max_t values and
+    then set the isect values.
+</p>
+<center><img src="images/part1/banana.png" align="center" width="400px"/></h2></center>
+
+
+<h2 align="middle">Part 2: Bounding Volume Hierarchy
+</h2>
+
+<p>We constructed a node and allocated it to heap memory so that it would persist through the recursive calls. We
+    iterated through all of the primitives passed in, and if it had <= the max leaf node number, we returned the node as
+    a leaf node with non-null start and end values. If the node is not a leaf node, we split the area in half by
+    determining the longest axis, and then finding the median centroid of all of the shapes by using the centroids of
+    each individual primitive. To ensure that none of the nodes would be empty and to avoid infinite recursive calls, we
+    found the bottom-leftmost node and always put it in the left child, and the top-rightmost node and always put it in
+    the right child. Once the left and right primitive lists have been constructed and allocated to memory, we made 2
+    recursive calls to the construct_bvh function: one for the left child and one for the right child.
+</p>
+
+<center><img src="images/part2/a.png" align="center" width="400px"/></h2>
+    <img src="images/part2/b.png" align="center" width="400px"/></h2></center>
+
+<p>For maxplanck.dae, the render time with BVH acceleration was 0.2197s. Without BVH acceleration it was 115.8828s. For
+    peter.dae, the render time with BVH acceleration was 75.3027s Without BVH acceleration it was 0.1519s. The reason it
+    is so much faster with BVH acceleration is that we don't have to do ray-intersection tests with every object.
+    Instead, we have constructed a tree structure that we can traverse to prune away branches that do not contain
+    objects the ray would never intersect.
+</p>
+
+<h2 align="middle">Part 3: Direct Illumination
+</h2>
+
+<p>We started by implementing direct lighting with uniform hemisphere sampling. For `n_samples` times, we'll sample a
+    random unit vector in the object space hemisphere, `wi`. Next, we'll convert `wi` into world space using the `o2w`
+    matrix; let's call this new vector `wi_world`. Then, we'll create a new ray from the origin `hit_p` and the
+    direction of `wi_world`. We'll also add a small epsilon constant to the origin of our ray to avoid precision issues.
+    This epsilon value will also be the ray's `min_t` value. Next, we'll calculate the reflectance of our intersection
+    object by using `isect.bsdf`'s `sample_f` function. We'll check if our new ray intersects our bounding volume
+    hierarchy, and if so, we'll calculate the amount of outgoing light and add it to `L_out`. We get the amount of
+    outgoing light for each sample by multiplying the reflected emission along the ray (`isect.bsdf->get_emmision()`)
+    with the reflectance and dividing by the pdf. Finally, we'll divide `L_out` by the number of samples and return.
+    Essentially, this process is approximating the amount of light arriving in a hemisphere around the point of
+    interest, `hit_p` using a Monte Carlo estimator.
+</p>
+
+<h3 align="middle">Task 1: Sampling with Diffuse BSDF
+
+</h3>
+<p></p>
+
+<h3 align="middle">Task 2: Global Illumination
+
+</h3>
+<p></p>
+
+<h2 align="middle">Part 5: Adaptive Sampling
+</h2>
+<p></p>
+
+<h2 align="middle">Conclusion
+</h2>
+<p></p>
+
+
+</body>
 </html>
