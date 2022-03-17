@@ -9,7 +9,24 @@
 </h2>
 
 <h2 style="font-family:verdana,serif" align="middle">Overview</h2>
-<p style="font-family:verdana,serif">Insert Overview here</p>
+<p style="font-family:verdana,serif">In project 3-1, we implemented a ray tracing algorithm to create a physics-based
+    renderer of scenes with light. For part 1, we implemented ray generation and measuring intersections of triangles
+    and spheres. We struggled for a little while getting rays to intersect triangle objects. Eventually, we found the
+    bug in our triangle.cpp file that was preventing the ray from accurately intersecting the triangle object. For part
+    2, we implemented the BVH acceleration structure used to speed up render times. We got most of the renders to speed
+    up the first try, but meshes with large bounding boxes with small objects inside were segfaulting. We fixed this by
+    placing the bottom-leftmost primitive was placed in the left node, and the top-rightmost was placed in the right
+    node. This ensured that we did not have infinite recursion. In part 3, we implemented direct illumination to light
+    up objects appropriately with respect to a certain light source. One thing we struggled with for part 3 was that we
+    had a bug in part 2, and it was affecting our renders in part 3. We tried debugging part 3 a lot, but then realized
+    that the bug lied within our part 2 code. In part 4, we implemented global illumination which enables the light to
+    bounce off of objects and illuminate other parts of the render that could not be illuminated using direct
+    illumination. We struggled with part 4 for a while because we had a couple of small bugs, including initializing the
+    direction of the new ray in the incorrect direction. For a while, we did not have an illuminated ceiling in any of
+    our renders. For part 5, we implemented adaptive sampling which allows renders to render faster because we use a
+    lower sampling rate for pixels that converge faster. We had an issue in part 4 that renders were just really dark.
+    This caused issues in part 5 where we are not getting middle rate sampling regions.
+</p>
 
 <h2 style="font-family:verdana,serif" align="middle">Part 1: Ray Generation and Scene Intersection</h2>
 <p style="font-family:verdana,serif">In our ray generation algorithm, we started by generating the ray in camera space.
@@ -194,8 +211,9 @@
                 <img src="images/part4/bunny_3.png" align="middle" width="400px"/>
                 <figcaption align="middle">max_ray_depth set to 3</figcaption>
             </td>
-            <td>                <img src="images/part4/bunny_100.png" align="middle" width="400px"/>
-                <figcaption align="middle">max_ray_depth set to 100</figcaption></td>
+            <td><img src="images/part4/bunny_100.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 100</figcaption>
+            </td>
         </tr>
     </table>
 </div>
