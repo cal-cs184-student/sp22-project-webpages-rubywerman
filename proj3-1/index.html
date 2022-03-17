@@ -2,23 +2,26 @@
 <head>
 </head>
 <body>
-<h1 align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
-<h1 align="middle">Project 3</h1>
-<h2 align="middle">Ruby and Jen, CS184-rayraycraycray <img src="images/dancingpizza.gif" align="center" width="100px"/>
+<h1 style="font-family:verdana,serif" align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+<h1 style="font-family:verdana,serif" align="middle">Project 3</h1>
+<h2 style="font-family:verdana,serif" align="middle">Ruby and Jen, CS184-rayraycraycray <img
+        src="images/dancingpizza.gif" align="center" width="100px"/>
 </h2>
 
-<h2 align="middle">Overview</h2>
-<p>Insert Overview here</p>
+<h2 style="font-family:verdana,serif" align="middle">Overview</h2>
+<p style="font-family:verdana,serif">Insert Overview here</p>
 
-<h2 align="middle">Part 1: Ray Generation and Scene Intersection</h2>
-<p>In our ray generation algorithm, we started by generating the ray in camera space. We did this by transforming the
+<h2 style="font-family:verdana,serif" align="middle">Part 1: Ray Generation and Scene Intersection</h2>
+<p style="font-family:verdana,serif">In our ray generation algorithm, we started by generating the ray in camera space.
+    We did this by transforming the
     coordinates we received into the camera space and then transforming it into a ray in world space. We also made sure
     to update the min_t and max_t of this ray to nClip and fClip. For our raytrace_pixel function, we created a for loop
     over num_samples and generated a random point sample in each iteration. We then created a ray off that sample data
     and called est_radiance_global_illumination on that ray. We then took the average of these rays and updated the
     value of the pixel in the sample buffer.
 </p>
-<p>We implemented the Moller-Trumbore algorithm for ray-triangle intersection. First, we calculated two edges of the
+<p style="font-family:verdana,serif">We implemented the Moller-Trumbore algorithm for ray-triangle intersection. First,
+    we calculated two edges of the
     triangle. We then created a vector that was the result of the cross product of an edge and the direction of the ray.
     Then we took the determinant by calculating the dot product of that vector and the other edge of the triangle. If
     the determinant is 0, then we know the ray is parallel to the triangle plane and will not intersect. Next, we
@@ -31,13 +34,36 @@
     and multiplying it by the inverse determinant. We checked that t was between the ray's min_t and max_t values and
     then set the isect values.
 </p>
-<center><img src="images/part1/banana.png" align="center" width="400px"/></h2></center>
+<!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
+
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part1/cbempty22.png" align="center" width="400px"/>
+
+            </td>
+            <td>
+                <img src="images/part1/cbench.png" align="center" width="400px"/>
+
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/part1/dragon.png" align="center" width="400px"/>
+
+            </td>
+        </tr>
+    </table>
+</div>
 
 
-<h2 align="middle">Part 2: Bounding Volume Hierarchy
+<h2 style="font-family:verdana,serif" align="middle">Part 2: Bounding Volume Hierarchy
 </h2>
 
-<p>We constructed a node and allocated it to heap memory so that it would persist through the recursive calls. We
+<p style="font-family:verdana,serif">We constructed a node and allocated it to heap memory so that it would persist
+    through the recursive calls. We
     iterated through all of the primitives passed in, and if it had <= the max leaf node number, we returned the node as
     a leaf node with non-null start and end values. If the node is not a leaf node, we split the area in half by
     determining the longest axis, and then finding the median centroid of all of the shapes by using the centroids of
@@ -50,17 +76,19 @@
 <center><img src="images/part2/a.png" align="center" width="400px"/></h2>
     <img src="images/part2/b.png" align="center" width="400px"/></h2></center>
 
-<p>For maxplanck.dae, the render time with BVH acceleration was 0.2197s. Without BVH acceleration it was 115.8828s. For
+<p style="font-family:verdana,serif">For maxplanck.dae, the render time with BVH acceleration was 0.2197s. Without BVH
+    acceleration it was 115.8828s. For
     peter.dae, the render time with BVH acceleration was 75.3027s Without BVH acceleration it was 0.1519s. The reason it
     is so much faster with BVH acceleration is that we don't have to do ray-intersection tests with every object.
     Instead, we have constructed a tree structure that we can traverse to prune away branches that do not contain
     objects the ray would never intersect.
 </p>
 
-<h2 align="middle">Part 3: Direct Illumination
+<h2 style="font-family:verdana,serif" align="middle">Part 3: Direct Illumination
 </h2>
 
-<p>We started by implementing direct lighting with uniform hemisphere sampling. For `n_samples` times, we'll sample a
+<p style="font-family:verdana,serif">We started by implementing direct lighting with uniform hemisphere sampling. For
+    `n_samples` times, we'll sample a
     random unit vector in the object space hemisphere, `wi`. Next, we'll convert `wi` into world space using the `o2w`
     matrix; let's call this new vector `wi_world`. Then, we'll create a new ray from the origin `hit_p` and the
     direction of `wi_world`. We'll also add a small epsilon constant to the origin of our ray to avoid precision issues.
@@ -72,22 +100,151 @@
     Essentially, this process is approximating the amount of light arriving in a hemisphere around the point of
     interest, `hit_p` using a Monte Carlo estimator.
 </p>
-<center><figure><img src="images/part3/bunny_64_32.png" align="center" width="400px"/></h2>
-    <figcaption>Hemisphere sampling.</figcaption></figure>
+<!--<center>-->
+<!--    <figure><img src="images/part3/bunny_64_32.png" align="center" width="400px"/></h2>-->
+<!--        <figcaption style="font-family:verdana,serif">Hemisphere sampling.</figcaption>-->
+<!--    </figure>-->
 
-<figure><img src="images/part3/bunny_64_32_importance.png" align="center" width="400px"/></h2>
-    <figcaption>Importance sampling.</figcaption></figure></center>
-<h2 align="middle">Part 4: Global Illumination
-</h2>
-<p></p>
+<!--    <figure><img src="images/part3/bunny_64_32_importance.png" align="center" width="400px"/></h2>-->
+<!--        <figcaption style="font-family:verdana,serif">Importance sampling.</figcaption>-->
+<!--    </figure>-->
+<!--</center>-->
 
-<h2 align="middle">Part 5: Adaptive Sampling
-</h2>
-<p></p>
+<!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
 
-<h2 align="middle">Conclusion
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part3/bunny_64_32.png" align="middle" width="400px"/>
+                <figcaption align="middle">Hemisphere sampling.</figcaption>
+            </td>
+            <td>
+                <img src="images/part3/bunny_64_32_importance.png" align="center" width="400px"/>
+                <figcaption align="middle">Importance sampling.</figcaption>
+            </td>
+        </tr>
+        <br>
+    </table>
+</div>
+
+
+<center style="font-family:verdana,serif">Importance sampling has less noise compared to hemisphere sampling. This
+    effect is a result of importance
+    sampling sampling the lights directly, whereas hemisphere sampling will sample rays in uniform directions in a
+    hemisphere. Since importance sampling takes samples directly from the light sources, there is less randomness in the
+    method, and thus less noise.
+</center>
+
+<center><p style="font-family:verdana,serif">Let's compare the noise levels in soft shadows when rendering 1, 4, 16, and
+    64 light rays (the -l flag) and
+    with 1
+    sample per pixel (the -s flag) using light
+    sampling</p></center>
+
+
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part3/spheres_1.png" align="middle" width="400px"/>
+                <figcaption align="middle">1 light ray.</figcaption>
+            </td>
+            <td>
+                <img src="images/part3/spheres_4.png" align="middle" width="400px"/>
+                <figcaption align="middle">4 light rays.</figcaption>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/part3/spheres_16.png" align="middle" width="400px"/>
+                <figcaption align="middle">16 light rays.</figcaption>
+            </td>
+            <td>
+                <img src="images/part3/spheres_64.png" align="middle" width="400px"/>
+                <figcaption align="middle">64 light rays.</figcaption>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<h2 style="font-family:verdana,serif" align="middle">Part 4: Global Illumination
 </h2>
-<p></p>
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part4/bunny_0.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 0</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_1.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 1</figcaption>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/part4/bunny_2.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 2</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_3.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 3</figcaption>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<h2 style="font-family:verdana,serif" align="middle">Part 5: Adaptive Sampling
+</h2>
+<p>We edited our raytrace_pixel function to implement adaptive sampling. For each sample, we updated our two variables,
+    s1 and s2, that represent the sample's illumination and illumination squared. Then, we calculated the mean and
+    standard deviation of the samples so far using the following equations:
+</p>
+
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part5/Screen Shot 2022-03-16 at 3.22.51 PM.png" align="middle" width="200px"/>
+            </td>
+        </tr>
+        <br>
+    </table>
+</div>
+
+<p>We then were able to calculate I, a variable that measures the pixel's convergence. If I is small enough (less than
+    maxTolerance * mean), we conclude that the pixel has converged and break out of the sampling loop. Next, we updated
+    the value we were loading into sampleBuffer.update_pixel by dividing the result of our loop by our updated count
+    variable. We also updated the value we were adding into our sampleCountBuffer to be this new count variable.
+</p>
+<center>
+    <img src="images/part5/bunnyrubyruby.png" align="middle" width="300px"/>
+    <img src="images/part5/bunnyrubyruby_rate.png" align="middle" width="300px"/>
+</center>
+
+<p>
+    As we can see, our rate image for task 5 has some regions with high sampling rates and some regions with low
+    sampling rates. This is somewhat the expected behavior, but we should really be seeing middle sampling rates as well
+    (green in the rate image). We have a bug in our part 4 that we were not able to solve in time. This resulted in more
+    noise in our image and rays bouncing less than expected. In order to get the desired behavior, we would need our
+    rays to terminate farther in the future. We can tell this is the case because of how dark the bunny's shadow is
+    under its nose.
+</p>
+<h2 style="font-family:verdana,serif" align="middle">Conclusion
+</h2>
+<p style="font-family:verdana,serif">Ruby completed part 1 and Jen took the lead in part 2. We walked through our
+    implementations and debugged together.
+    We worked on part 3 and 4 together. Ruby worked on part 5 when Jen started rendering the images for part 4 on the
+    writeup. Ruby created the website and Jen wrote the overview. We split up the writeup pretty evenly depending on
+    what parts we worked on. This project felt bigger than the last ones but it was really interesting. We ran into bugs
+    on every part, but were usually able to solve them in under a day. I enjoyed rendering illumination and felt like I
+    learned a better understanding of rays and bsdf.
+</p>
 
 
 </body>
