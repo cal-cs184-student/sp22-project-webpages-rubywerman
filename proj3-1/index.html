@@ -9,7 +9,24 @@
 </h2>
 
 <h2 style="font-family:verdana,serif" align="middle">Overview</h2>
-<p style="font-family:verdana,serif">Insert Overview here</p>
+<p style="font-family:verdana,serif">In project 3-1, we implemented a ray tracing algorithm to create a physics-based
+    renderer of scenes with light. For part 1, we implemented ray generation and measuring intersections of triangles
+    and spheres. We struggled for a little while getting rays to intersect triangle objects. Eventually, we found the
+    bug in our triangle.cpp file that was preventing the ray from accurately intersecting the triangle object. For part
+    2, we implemented the BVH acceleration structure used to speed up render times. We got most of the renders to speed
+    up the first try, but meshes with large bounding boxes with small objects inside were segfaulting. We fixed this by
+    placing the bottom-leftmost primitive was placed in the left node, and the top-rightmost was placed in the right
+    node. This ensured that we did not have infinite recursion. In part 3, we implemented direct illumination to light
+    up objects appropriately with respect to a certain light source. One thing we struggled with for part 3 was that we
+    had a bug in part 2, and it was affecting our renders in part 3. We tried debugging part 3 a lot, but then realized
+    that the bug lied within our part 2 code. In part 4, we implemented global illumination which enables the light to
+    bounce off of objects and illuminate other parts of the render that could not be illuminated using direct
+    illumination. We struggled with part 4 for a while because we had a couple of small bugs, including initializing the
+    direction of the new ray in the incorrect direction. For a while, we did not have an illuminated ceiling in any of
+    our renders. For part 5, we implemented adaptive sampling which allows renders to render faster because we use a
+    lower sampling rate for pixels that converge faster. We had an issue in part 4 that renders were just really dark.
+    This caused issues in part 5 where we are not getting middle rate sampling regions.
+</p>
 
 <h2 style="font-family:verdana,serif" align="middle">Part 1: Ray Generation and Scene Intersection</h2>
 <p style="font-family:verdana,serif">In our ray generation algorithm, we started by generating the ray in camera space.
@@ -73,8 +90,8 @@
     recursive calls to the construct_bvh function: one for the left child and one for the right child.
 </p>
 
-<center><img src="images/part2/a.png" align="center" width="400px"/></h2>
-    <img src="images/part2/b.png" align="center" width="400px"/></h2></center>
+<center><img src="images/part2/lucy.jpeg" align="center" width="400px"/></h2>
+    <img src="images/part2/maxplanck.jpeg" align="center" width="400px"/></h2></center>
 
 <p style="font-family:verdana,serif">For maxplanck.dae, the render time with BVH acceleration was 0.2197s. Without BVH
     acceleration it was 115.8828s. For
@@ -193,6 +210,44 @@
             <td>
                 <img src="images/part4/bunny_3.png" align="middle" width="400px"/>
                 <figcaption align="middle">max_ray_depth set to 3</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_4.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 4</figcaption>
+            </td>
+            <td><img src="images/part4/bunny_100.png" align="middle" width="400px"/>
+                <figcaption align="middle">max_ray_depth set to 100</figcaption>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div align="middle">
+    <table style="width=100%">
+        <tr>
+            <td>
+                <img src="images/part4/bunny_4_1.png" align="middle" width="400px"/>
+                <figcaption align="middle">1 sample-per-pixel</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_4_2.png" align="middle" width="400px"/>
+                <figcaption align="middle">2 sample-per-pixel.</figcaption>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/part4/bunny_4_4.png" align="middle" width="400px"/>
+                <figcaption align="middle">4 sample-per-pixel</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_4_8.png" align="middle" width="400px"/>
+                <figcaption align="middle">8 sample-per-pixel</figcaption>
+            </td>
+            <td>
+                <img src="images/part4/bunny_4_16.png" align="middle" width="400px"/>
+                <figcaption align="middle">16 sample-per-pixel.</figcaption>
             </td>
         </tr>
     </table>
