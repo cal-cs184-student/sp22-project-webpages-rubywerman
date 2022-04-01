@@ -19,79 +19,110 @@
 <p style="font-family:verdana,serif">
     A pinhole camera model has no lens and a tiny aperture. This means that everything is in focus, regardless of
     focalDistance. This is because there is no lens. In a thins-lens camera model, the aperture is a finite number
-    defined by lens radius. Objects are only in focus in the camera model if they’re within the plane that is located at
+    defined by lens radius. Objects are only in focus in the camera model if they're within the plane that is located at
     focalDistance from the lens object.
 </p>
 <p style="font-family:verdana,serif">
-	Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene:
+    Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene:
 </p>
 
 <!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
 
 <div align="middle">
-  <table style="width:100%">
-    <tr>
-      <td>
-        <img src="images/CBDragon_b1.png" align="middle" width="400px"/>
-        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b 1.0 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae</figcaption>
-      </td>
-      <td>
-        <img src="images/CBDragon_b05.png" align="middle" width="400px"/>
-        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .5 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <td>
-        <img src="images/CBDragon_b025.png" align="middle" width="400px"/>
-        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .25 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-      <td>
-        <img src="images/CBDragon_b0001.png" align="middle" width="400px"/>
-        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .0001 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-    </tr>
-  </table>
+    <table style="width:100%">
+        <tr>
+            <td>
+                <img src="images/CBDragon_b1.png" align="middle" width="400px"/>
+                <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b 1.0 -d 4.0 -r 480 360 -f test1.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+            <td>
+                <img src="images/CBDragon_b05.png" align="middle" width="400px"/>
+                <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .5 -d 4.0 -r 480 360 -f test1.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/CBDragon_b025.png" align="middle" width="400px"/>
+                <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .25 -d 4.0 -r 480 360 -f test1.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+            <td>
+                <img src="images/CBDragon_b0001.png" align="middle" width="400px"/>
+                <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .0001 -d 4.0 -r 480 360 -f test1.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <p style="font-family:verdana,serif">
-  Show a "focus stack" where you focus at 4 visibly different depths through a scene:
+    Show a "focus stack" where you focus at 4 visibly different depths through a scene:
 </p>
 
 <!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
 
 <div align="middle">
-  <table style="width:100%">
-    <tr>
-      <td>
-        <img src="images/CBDragon_d100.png" align="middle" width="400px"/>
-        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 100.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-      <td>
-        <img src="images/CBDragon_d16.png" align="middle" width="400px"/>
-        <figcaption align="middle">.-t 8 -s 16 -l 4 -m 12 -b .25 -d 16.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <td>
-        <img src="images/CBDragon_d8.png" align="middle" width="400px"/>
-        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 8.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-      <td>
-        <img src="images/CBDragon_d4.png" align="middle" width="400px"/>
-        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 4 -r 480 360 -f CBDragon_d4.png ../dae/sky/CBdragon.dae
-        </figcaption>
-      </td>
-    </tr>
-  </table>
+    <table style="width:100%">
+        <tr>
+            <td>
+                <img src="images/CBDragon_d100.png" align="middle" width="400px"/>
+                <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 100.0 -r 480 360 -f CBDragon_d16.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+            <td>
+                <img src="images/CBDragon_d16.png" align="middle" width="400px"/>
+                <figcaption align="middle">.-t 8 -s 16 -l 4 -m 12 -b .25 -d 16.0 -r 480 360 -f CBDragon_d16.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <img src="images/CBDragon_d8.png" align="middle" width="400px"/>
+                <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 8.0 -r 480 360 -f CBDragon_d16.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+            <td>
+                <img src="images/CBDragon_d4.png" align="middle" width="400px"/>
+                <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 4 -r 480 360 -f CBDragon_d4.png
+                    ../dae/sky/CBdragon.dae
+                </figcaption>
+            </td>
+        </tr>
+    </table>
 </div>
 
+<img src="images/writeup.png" align="middle" width="400px"/>
+<figcaption align="middle">-t 8 -s 256 -l 4 -m 12 -b 1.0 -d 4.56 -r 1920 1080 -f writeup.png ../dae/sky/CBdragon.dae
+</figcaption>
+
+
+<p>
+    We completed part 4 by generally following our code from 3-1 and the algorithm described in part 4. First, we calculated the red ray we did in part 3-1. We do this by transforming the coordinates to camera space and
+    creating a ray in worldspace. Next, we calculate pLens using the following formula:
+</p>
+
+<img src="images/plens.png" align="middle" width="400px"/>
+
+<p>
+    Next, we calculate pFocus by multiplying the direction of the ray by the focalDistance. We then create a new ray
+    using pLens as the origin and pFocus - pLens as the direction. We then normalize the ray's direction and do
+    camera-to world conversion. Finally, we add the pos value to the ray's origin and set the near and far clips.
+
+</p>
+
+<h2 style="font-family:verdana,serif" align="middle">Contributions</h2>
+<p style="font-family:verdana,serif">
+</p>
 </body>
 </html>
