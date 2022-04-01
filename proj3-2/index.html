@@ -1,7 +1,97 @@
 <html>
-	<head>
-	</head>
-	<body>
-		Project 3-2 here
-	</body>
+<head>
+</head>
+<h1 style="font-family:verdana,serif" align="middle">CS 184: Computer Graphics and Imaging, Spring 2022</h1>
+<h1 style="font-family:verdana,serif" align="middle">Project 3-2</h1>
+<h2 style="font-family:verdana,serif" align="middle">Ruby and Jen, CS184-kissmyglass <img
+        src="images/dancingpizza.gif" align="center" width="100px"/>
+</h2>
+<body>
+<h2 style="font-family:verdana,serif" align="middle">Overview</h2>
+<p style="font-family:verdana,serif">
+</p>
+
+<h2 style="font-family:verdana,serif" align="middle">Part 1</h2>
+<p style="font-family:verdana,serif">
+</p>
+
+<h2 style="font-family:verdana,serif" align="middle">Part 4</h2>
+<p style="font-family:verdana,serif">
+    A pinhole camera model has no lens and a tiny aperture. This means that everything is in focus, regardless of
+    focalDistance. This is because there is no lens. In a thins-lens camera model, the aperture is a finite number
+    defined by lens radius. Objects are only in focus in the camera model if they’re within the plane that is located at
+    focalDistance from the lens object.
+</p>
+<p style="font-family:verdana,serif">
+	Show a sequence of 4 pictures with visibly different aperture sizes, all focused at the same point in a scene:
+</p>
+
+<!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
+
+<div align="middle">
+  <table style="width:100%">
+    <tr>
+      <td>
+        <img src="images/CBDragon_b1.png" align="middle" width="400px"/>
+        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b 1.0 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae</figcaption>
+      </td>
+      <td>
+        <img src="images/CBDragon_b05.png" align="middle" width="400px"/>
+        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .5 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/CBDragon_b025.png" align="middle" width="400px"/>
+        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .25 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+      <td>
+        <img src="images/CBDragon_b0001.png" align="middle" width="400px"/>
+        <figcaption align="middle">./pathtracer -t 8 -s 16 -l 4 -m 12 -b .0001 -d 4.0 -r 480 360 -f test1.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p style="font-family:verdana,serif">
+  Show a "focus stack" where you focus at 4 visibly different depths through a scene:
+</p>
+
+<!--<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>-->
+
+<div align="middle">
+  <table style="width:100%">
+    <tr>
+      <td>
+        <img src="images/CBDragon_d100.png" align="middle" width="400px"/>
+        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 100.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+      <td>
+        <img src="images/CBDragon_d16.png" align="middle" width="400px"/>
+        <figcaption align="middle">.-t 8 -s 16 -l 4 -m 12 -b .25 -d 16.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <td>
+        <img src="images/CBDragon_d8.png" align="middle" width="400px"/>
+        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 8.0 -r 480 360 -f CBDragon_d16.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+      <td>
+        <img src="images/CBDragon_d4.png" align="middle" width="400px"/>
+        <figcaption align="middle">-t 8 -s 16 -l 4 -m 12 -b .25 -d 4 -r 480 360 -f CBDragon_d4.png ../dae/sky/CBdragon.dae
+        </figcaption>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
 </html>
