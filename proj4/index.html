@@ -1,7 +1,467 @@
-<html>
-	<head>
-	</head>
-	<body>
-		Project 4 here
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Project 4: Cloth Sim</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/Screen Shot 2022-04-13 at 8.40.35 PM.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">Project 4: Cloth Sim</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Part 1">Part 1</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Part 2">Part 2</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Part 3">Part 3</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Part 4">Part 4</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#Part 5">Part 5</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="assets/ruby.png" alt="..." />
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading text-uppercase mb-0">Project 4: Cloth Sim</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0">OVERVIEW</p>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class=""><p class="lead">In this project we created a cloth simulation using masses and springs. We started by creating the cloth by implementing a system of point masses and springs. We divided the cloth into point masses and connected them together with springs. Next, we added the physical equations of motion to represent gravity and spring forces on the cloth. We used verlet integration to compute new point mass positions. Then we implemented collisions with spheres and planes. Adding collision support enabled us to drape the cloth over a sphere in a realistic manner. After that we handled self-collisions, which allowed us to represent the cloth falling/folding on itself realistically. Finally, we created shader programs, which allowed us to speed up sections of the graphics pipeline. We recreated diffuse shading, Blinn-Phong shading, texture mapping, displacement mapping, bump mapping, and environment-mapped reflections in shader programs. One challenge we ran into was creating the shader programs. It was challenging at first to learn the syntax, but we read the documentation and got familiar with it.
+                    </div>
+            </div>
+        </header>
+        <!-- Part 1 Section-->
+        <section class="page-section bg-primary text-white mb-0" id="Part 1">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Part 1: Masses and springs</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class=""><p class="lead">Take some screenshots of scene/pinned2.json from a viewing angle where you can clearly see the cloth wireframe to show the structure of your point masses and springs.
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part1/image16.png" style="width:500px"/>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part1/image27.png" style="width:500px"/>
+                    <div class=""><p class="lead">Show us what the wireframe looks like (1) without any shearing constraints, (2) with only shearing constraints, and (3) with all constraints.
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part1/image18.png" style="width:500px"/>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part1/image9.png" style="width:500px"/>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part1/image1.png" style="width:500px"/>
+                </div>
+        </section>
+
+        <!-- Part 2 Section-->
+        <section class="page-section bg-primary text-white mb-0" id="Part 2">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Part 2: Simulation via numerical integration
+                </h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class=""><p class="lead">With a low spring constant, the cloth becomes very thin and loose. The texture reminds me of a piece of stretchy cloth. There are a lot more folds and the cloth appears more droopy. With a high spring constant, the cloth is a lot more rigid and holds its square shape much better. There are a lot fewer folds in the cloth compared to the low spring constant.
+                    </div>
+                    <div class=""><p class="lead">k_s = 10</div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image6.png" style="width:500px"/>
+                    <div class=""><p class="lead">k_s = 10000</div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image28.png" style="width:500px"/>
+
+                    <div class=""><p class="lead">With a low density, the cloth looks like it weighs a lot less when it falls and holds its shape a lot more. It doesn’t have as many folds as it does with the default density. With a higher density, the cloth does not hold its shape as well because it is heavier per square centimeter. There is a much larger fold at the top of the cloth, and many more folds along the sides.
+                    </div>
+                    <div class=""><p class="lead">Density = 1 g/cm2
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image17.png" style="width:500px"/>
+                    <div class=""><p class="lead">Density = 100 g/cm2
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image11.png" style="width:500px"/>
+
+                    <div class=""><p class="lead">With a low damping constant, the cloth swings back and forth many times before it stops swinging at the bottom. It also scrunches up a lot more as the springs oscillate back and forth. With a high damping constant, the cloth slowly swings down in a uniform fashion with no oscillation. The high damping constant makes it evident why springs are good to use as building blocks of rendering cloth.
+                    </div>
+                    <div class=""><p class="lead">D = 0.34
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image23.png" style="width:500px"/>
+                    <div class=""><p class="lead">D = 1.0
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image32.png" style="width:500px"/>
+
+
+                    <div class=""><p class="lead">Shaded cloth from scene/pinned4.json in its final resting state</div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part2/image30.png" style="width:500px"/>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3 Section-->
+        <section class="page-section bg-primary text-white mb-0" id="Part 3">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Part 3: Handling collisions with other objects
+                </h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class=""><p class="lead">Ks = 5000
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part3/image26.png" style="width:500px"/>
+                    <div class=""><p class="lead">Ks = 50
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part3/image5.png" style="width:500px"/>
+                    <div class=""><p class="lead">Ks = 50000
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part3/image19.png" style="width:500px"/>
+                    <div class=""><p class="lead">Compared to the default, the cloth with Ks = 50 was much looser and hung in a more droopy way. We noticed a number of self collisions that have to be dealt with if we want a more realistic model. The cloth with Ks = 50000 held its flat shape much more rigidly than the default. When it dropped onto the sphere, the edges bounced up a little. The default cloth did not do this in a particularly noticeable way.
+                    </div>
+
+                    <div class=""><p class="lead">Cloth lying peacefully at rest on the plane
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part3/image21.png" style="width:500px"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4 Section-->
+        <section class="page-section bg-primary text-white mb-0" id="Part 4">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Part 4: Handling self-collisions
+                </h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image7.png" style="width:500px"/>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image15.png" style="width:500px"/>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image20.png" style="width:500px"/>
+
+
+                    <div class=""><p class="lead">Density = 15, Ks = 10</div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image12.png" style="width:500px"/>
+                    <div class=""><p class="lead">Since the low spring constant is making the cloth less rigid, the folds in the cloth are much smaller compared to the default settings. This also increases the number of folds in the cloth since more can fit in the cloth.
+                    </div>
+
+                    <div class=""><p class="lead">Density = 100, Ks = 5000
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image24.png" style="width:500px"/>
+                    <div class=""><p class="lead">With a higher density, the weight of the cloth overcomes the rigidity of the default spring constant of 5000. This also results in much smaller folds and a higher number of them in the cloth.
+                    </div>
+                    <div class=""><p class="lead">Density = 10, Ks = 5000
+                    </div>
+                    <img class="img-fluid rounded mb-5" src="assets/img/part4/image2.png" style="width:500px"/>
+                    <div class=""><p class="lead">With a lower density and default spring constant, the folds in the cloth are much larger and propagate up the cloth much quicker. The higher rigidity with respect to density allows the cloth to keep its shape better, and does not allow many smaller folds to form.
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5 Section-->
+        <section class="page-section bg-primary text-white mb-0" id="Part 5">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Part 5: Shaders</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class=""><p class="lead">Shaders are programs that run individual parts of the rasterization pipeline parallel on the GPU. The purpose of shader programs is to speed up the rasterization progress. Vertex shaders operate on vertices. These transformations modify the geometric properties of vertices like position and normal vectors. The fragment shaders are what we are left with after rasterization. We use elements that we calculate by the vertex shader to calculate the final out_color. We must use vertex and fragment shaders together to create a shader program. We use the output of the vertex shader as the input of the fragment shader.
+                </div>
+                    <div class=""><p class="lead">The Blinn-Phong shading model is a per-sample method that we can use to make the shading of three dimensional scenes look more realistic with respect to the lighting and shading of objects. The model has three components: an ambient constant term, a diffuse term, and a specular term that depends on how the material reflects light.</div>
+            </div>
+
+                <div class=""><p class="lead">Diffuse Component Only:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image13.png" style="width:500px"/>
+                <div class=""><p class="lead">Ambient Component Only:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image14.png" style="width:500px"/>
+                <div class=""><p class="lead">Entire Blinn-Phong Model:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image4.png" style="width:500px"/>
+                <div class=""><p class="lead">Custom Texture:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image3.png" style="width:500px"/>
+
+                <div class=""><p class="lead">INSERT HERE</div>
+
+                <div class=""><p class="lead">Bump:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image8.png" style="width:500px"/>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image10.png" style="width:500px"/>
+
+                <div class=""><p class="lead">Displacement:</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image22.png" style="width:500px"/>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image29.png" style="width:500px"/>
+
+                <div class=""><p class="lead">Mirror Shader</div>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image25.png" style="width:500px"/>
+                <img class="img-fluid rounded mb-5" src="assets/img/part5/image31.png" style="width:500px"/>
+
+
+
+        </section>
+
+
+        <!-- Copyright Section-->
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Your Mom 2022</small></div>
+        </div>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Log Cabin</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Tasty Cake</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="..." />
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close Window
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
